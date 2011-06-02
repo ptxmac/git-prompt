@@ -670,6 +670,7 @@ alias jumpstart='echo ${aj_dir_list[@]}'
 ###################################################################### PROMPT_COMMAND
 
 prompt_command_function() {
+#		update_terminal_cwd
         rc="$?"
 
         if [[ "$rc" == "0" ]]; then
@@ -696,8 +697,8 @@ prompt_command_function() {
 
         unset head_local tail_local pwd
  }
+ 		PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; prompt_command_function"
 
-        PROMPT_COMMAND=prompt_command_function
 
         enable_set_shell_label
 
