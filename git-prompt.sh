@@ -680,7 +680,7 @@ prompt_command_function() {
         fi
 
         cwd=${PWD/$HOME/\~}                     # substitute  "~"
-        set_shell_label "${cwd##[/~]*/}/"       # default label - path last dir
+        #set_shell_label "${cwd##[/~]*/}/"       # default label - path last dir
 
         parse_vcs_status
 
@@ -700,7 +700,7 @@ prompt_command_function() {
  		PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; prompt_command_function"
 
 
-        enable_set_shell_label
+        #enable_set_shell_label
 
         unset rc id tty modified_files file_list
 
