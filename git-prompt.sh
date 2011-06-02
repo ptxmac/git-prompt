@@ -143,7 +143,7 @@
              detached_vcs_color=${!detached_vcs_color}
                   hex_vcs_color=${!hex_vcs_color}
 
-        unset PROMPT_COMMAND
+        #unset PROMPT_COMMAND
 
         #######  work around for MC bug.
         #######  specifically exclude emacs, want full when running inside emacs
@@ -697,7 +697,7 @@ prompt_command_function() {
 
         unset head_local tail_local pwd
  }
- 		PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; prompt_command_function"
+ 		PROMPT_COMMAND="prompt_command_function; $PROMPT_COMMAND" 		
 
 
         #enable_set_shell_label
