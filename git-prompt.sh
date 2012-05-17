@@ -54,11 +54,7 @@
                    op_vcs_color=${op_vcs_color:-MAGENTA}
              detached_vcs_color=${detached_vcs_color:-RED}
 
-             if [[ $OSTYPE == "linux-gnu" ]] ;  then                # no linux OSs do not support extra colors
-                  hex_vcs_color=${hex_vcs_color:-dim}
-             else
-                  hex_vcs_color=${hex_vcs_color:-colors_reset}
-             fi
+                  hex_vcs_color=${hex_vcs_color:-BLACK}         # gray
 
 
         max_file_list_length=${max_file_list_length:-100}
@@ -226,7 +222,10 @@ cwd_truncate() {
 
 set_shell_label() {
 
-        xterm_label() { echo  -n "]2;${@}" ; }   # FIXME: replace hardcodes with terminfo codes
+        xterm_label() {
+                local args="$*"
+                echo  -n "]2;${args:0:200}" ;    # FIXME: replace hardcodes with terminfo codes
+        }   
 
         screen_label() {
                 # FIXME: run this only if screen is in xterm (how to test for this?)
@@ -319,7 +318,6 @@ set_shell_label() {
 
         # we might already have short host name
         host=${host%.$default_domain}
-
 
 #################################################################### WHO_WHERE
         #  [[user@]host[-tty]]
@@ -645,6 +643,9 @@ enable_set_shell_label() {
         trap '[[ -z "$BASH_SOURCE" && ($BASH_COMMAND != prompt_command_function) ]] &&
 	     set_shell_label $BASH_COMMAND' DEBUG  >& /dev/null
  }
+
+declare -ft disable_set_shell_label
+declare -ft enable_set_shell_label
 
 # autojump (see http://wiki.github.com/joelthelion/autojump)
 
