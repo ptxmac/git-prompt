@@ -1,4 +1,5 @@
 
+
         # don't set prompt if this is not interactive shell
         [[ $- != *i* ]]  &&  return
 
@@ -671,7 +672,6 @@ alias jumpstart='echo ${aj_dir_list[@]}'
 ###################################################################### PROMPT_COMMAND
 
 prompt_command_function() {
-#		update_terminal_cwd
         rc="$?"
 
         if [[ "$rc" == "0" ]]; then
